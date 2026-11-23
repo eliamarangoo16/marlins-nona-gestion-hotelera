@@ -51,9 +51,16 @@ Deno.serve(async (req) => {
     return json({ skipped: true, reason: 'not_found_or_already_pushed' })
   }
 
+  // Si algo falla antes de enviar, liberar la notificación para reintentar
+  const release = () =>
+    supabase.from('notifications').update({ pushed_at: null }).eq('id', notification.id)
+
   const { data: keys, error: kErr } = await supabase.rpc('get_vapid_keys')
   const vapid = Array.isArray(keys) ? keys[0] : keys
-  if (kErr || !vapid) return json({ error: kErr?.message ?? 'Sin llaves VAPID' }, 500)
+  if (kErr || !vapid) {
+    await release()
+    return json({ error: kErr?.message ?? 'Sin llaves VAPID' }, 500)
+  }
 
   webpush.setVapidDetails(vapid.subject, vapid.public_key, vapid.private_key)
 
@@ -61,7 +68,10 @@ Deno.serve(async (req) => {
     .from('push_subscriptions')
     .select('id, endpoint, p256dh, auth')
     .eq('user_id', notification.user_id)
-  if (sErr) return json({ error: sErr.message }, 500)
+  if (sErr) {
+    await release()
+    return json({ error: sErr.message }, 500)
+  }
 
   const payload = JSON.stringify({
     title: notification.title,
