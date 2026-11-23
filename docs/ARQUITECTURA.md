@@ -10,8 +10,8 @@ Plataforma para administrar edificios de departamentos en renta vacacional (Airb
 ## Roles
 | Rol | Qué puede hacer |
 |---|---|
-| `developer` | Todo, incluida la gestión de usuarios y otros developers. Se asigna automáticamente a `aramueliam16@gmail.com` al registrarse. |
-| `admin_universal` | Todo en todos los edificios; crea usuarios y asigna roles (excepto developer). |
+| `developer` | Todo, incluida la gestión de usuarios y otros developers. Se asigna automáticamente a `aramueliam16@gmail.com` al registrarse y confirmar el correo. |
+| `admin_universal` | Todo en todos los edificios; crea usuarios y asigna roles de edificio, mantenimiento y limpieza (no puede crear ni modificar developers ni otros admin_universal). |
 | `admin_edificio` | Todo dentro de los edificios que se le asignen (departamentos, reservas, tarifas, huéspedes, gastos, inventario, tickets, limpiezas). |
 | `mantenimiento` | Ve departamentos de sus edificios, crea y atiende tickets, registra consumo de inventario y pide insumos. |
 | `limpieza` | Ve departamentos de sus edificios, atiende tareas de limpieza, reporta fallas, registra consumo y pide insumos. |
