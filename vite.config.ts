@@ -3,7 +3,11 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 import path from 'node:path'
 
+// En GitHub Pages la app vive en /<repo>/ ; en local o Vercel, en /
+const base = process.env.VITE_BASE || '/'
+
 export default defineConfig({
+  base,
   resolve: { alias: { '@': path.resolve(__dirname, 'src') } },
   plugins: [
     react(),
@@ -22,8 +26,8 @@ export default defineConfig({
         theme_color: '#0f2a44',
         background_color: '#ffffff',
         display: 'standalone',
-        start_url: '/',
-        scope: '/',
+        start_url: base,
+        scope: base,
         lang: 'es-MX',
         icons: [
           { src: 'icon-192.png', sizes: '192x192', type: 'image/png' },

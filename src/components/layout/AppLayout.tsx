@@ -10,7 +10,7 @@ import { NotificationBell } from './NotificationBell'
 function Logo({ small }: { small?: boolean }) {
   return (
     <Link to="/" className="flex items-center gap-2">
-      <img src="/icon.svg" alt="" className={small ? 'h-7 w-7' : 'h-9 w-9'} />
+      <img src={`${import.meta.env.BASE_URL}icon.svg`} alt="" className={small ? 'h-7 w-7' : 'h-9 w-9'} />
       <span className="leading-tight">
         <span className="block text-sm font-semibold tracking-wide text-white">Marlins &amp; Nona</span>
         {!small && <span className="block text-[11px] text-sand">Gestión hotelera</span>}

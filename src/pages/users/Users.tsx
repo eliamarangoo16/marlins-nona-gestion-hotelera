@@ -215,7 +215,7 @@ function EditUserModal({ profile, roleOptions, assigned, onClose, onSaved, onCre
 
 function CredentialsModal({ cred, onClose }: { cred: { email: string; password: string } | null; onClose: () => void }) {
   const toast = useToast()
-  const text = cred ? `Correo: ${cred.email}\nContraseña temporal: ${cred.password}\nEntra en ${window.location.origin}` : ''
+  const text = cred ? `Correo: ${cred.email}\nContraseña temporal: ${cred.password}\nEntra en ${window.location.origin}${import.meta.env.BASE_URL}` : ''
   return (
     <Modal open={!!cred} onClose={onClose} title="Credenciales del usuario" size="sm" footer={<Button onClick={onClose}>Listo</Button>}>
       <div className="space-y-3">

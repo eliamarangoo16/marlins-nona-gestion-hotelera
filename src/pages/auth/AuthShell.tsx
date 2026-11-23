@@ -5,7 +5,7 @@ export function AuthShell({ title, subtitle, children }: { title: string; subtit
     <div className="flex min-h-full items-center justify-center bg-brand px-4 py-10">
       <div className="w-full max-w-md">
         <div className="mb-6 flex flex-col items-center text-center">
-          <img src="/icon.svg" alt="" className="h-16 w-16" />
+          <img src={`${import.meta.env.BASE_URL}icon.svg`} alt="" className="h-16 w-16" />
           <h1 className="mt-3 text-xl font-semibold text-white">Marlins &amp; Nona</h1>
           <p className="text-sm text-sand">Gestión hotelera</p>
         </div>
