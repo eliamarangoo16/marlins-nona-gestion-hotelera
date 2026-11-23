@@ -1,4 +1,4 @@
-# Marlins & Nona · Gestión
+# Marlins & Nona Apartments
 
 Plataforma de gestión hotelera para departamentos en renta vacacional (Airbnb), pensada para administrar varios edificios y departamentos. Es una PWA instalable en el celular, con notificaciones push.
 

@@ -1,4 +1,4 @@
-# Marlins & Nona · Plataforma de gestión hotelera
+# Marlins & Nona Apartments · Plataforma de gestión hotelera
 
 Plataforma para administrar edificios de departamentos en renta vacacional (Airbnb), escalable a más edificios.
 

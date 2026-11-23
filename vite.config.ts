@@ -20,7 +20,7 @@ export default defineConfig({
       injectManifest: { globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2}'] },
       includeAssets: ['icon.svg', 'apple-touch-icon.png'],
       manifest: {
-        name: 'Marlins & Nona · Gestión',
+        name: 'Marlins & Nona Apartments',
         short_name: 'Marlins & Nona',
         description: 'Plataforma de gestión hotelera para departamentos en renta vacacional',
         theme_color: '#0f2a44',
