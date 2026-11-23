@@ -1,0 +1,37 @@
+{
+  "name": "marlins-nona",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "preview": "vite preview",
+    "icons": "node scripts/gen-icons.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.119.2",
+    "date-fns": "^4.4.0",
+    "lucide-react": "^1.77.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.6",
+    "recharts": "^3.11.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^6.3.0",
+    "autoprefixer": "^10.7.0",
+    "postcss": "^8.5.33",
+    "sharp": "^0.35.5",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8",
+    "vite-plugin-pwa": "^2.0.0",
+    "workbox-core": "^7.4.1",
+    "workbox-precaching": "^7.4.1",
+    "workbox-routing": "^7.4.1"
+  }
+}

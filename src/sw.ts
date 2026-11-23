@@ -1,0 +1,63 @@
+/// <reference lib="webworker" />
+import { precacheAndRoute, cleanupOutdatedCaches, createHandlerBoundToURL } from 'workbox-precaching'
+import { NavigationRoute, registerRoute } from 'workbox-routing'
+import { clientsClaim } from 'workbox-core'
+
+declare const self: ServiceWorkerGlobalScope
+
+cleanupOutdatedCaches()
+precacheAndRoute(self.__WB_MANIFEST)
+
+// SPA: toda navegación devuelve index.html precacheado
+try {
+  registerRoute(new NavigationRoute(createHandlerBoundToURL('/index.html')))
+} catch {
+  /* sin index precacheado en desarrollo */
+}
+
+self.skipWaiting()
+clientsClaim()
+
+self.addEventListener('push', (event) => {
+  let data: { title?: string; body?: string; url?: string; tag?: string } = {}
+  try {
+    data = event.data?.json() ?? {}
+  } catch {
+    data = { title: 'Marlins & Nona', body: event.data?.text() }
+  }
+  const title = data.title || 'Marlins & Nona'
+  event.waitUntil(
+    self.registration.showNotification(title, {
+      body: data.body || '',
+      icon: '/icon-192.png',
+      badge: '/icon-192.png',
+      tag: data.tag,
+      data: { url: data.url || '/' },
+    }),
+  )
+})
+
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close()
+  const url: string = (event.notification.data && event.notification.data.url) || '/'
+  const target = new URL(url, self.location.origin).href
+  event.waitUntil(
+    (async () => {
+      const all = await self.clients.matchAll({ type: 'window', includeUncontrolled: true })
+      for (const client of all) {
+        if (new URL(client.url).origin === self.location.origin && 'focus' in client) {
+          await client.focus()
+          if ('navigate' in client) {
+            try {
+              await (client as WindowClient).navigate(target)
+            } catch {
+              /* ignorar */
+            }
+          }
+          return
+        }
+      }
+      await self.clients.openWindow(target)
+    })(),
+  )
+})
